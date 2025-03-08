@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/level.dart';
 
-class PixelGame extends FlameGame with HasKeyboardHandlerComponents, DragCallbacks{
+class PixelGame extends FlameGame with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection{
   @override
   Color backgroundColor() => const Color(0xFF211F30);
   

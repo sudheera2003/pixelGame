@@ -4,13 +4,14 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:mobilegame/components/collision_block.dart';
-import 'package:mobilegame/components/player_hitbox.dart';
+import 'package:mobilegame/components/custom_hitbox.dart';
+import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/utils.dart';
 import 'package:mobilegame/pixel_game.dart';
 
 enum PlayerState { idle, running, jumping, falling }
 
-class Player extends SpriteAnimationGroupComponent with HasGameRef<PixelGame>, KeyboardHandler{
+class Player extends SpriteAnimationGroupComponent with HasGameRef<PixelGame>, KeyboardHandler, CollisionCallbacks{
 
   String character = ""; 
   //constructor
@@ -36,7 +37,7 @@ class Player extends SpriteAnimationGroupComponent with HasGameRef<PixelGame>, K
   bool isOnGround = false;
   bool hasJumped = false;
   List<CollisionBlock> collisionBlocks = [];
-  PlayerHitbox hitbox = PlayerHitbox(
+  CustomHitbox hitbox = CustomHitbox(
     offsetX: 10, 
     offsetY: 4, 
     width: 14, 
@@ -46,7 +47,7 @@ class Player extends SpriteAnimationGroupComponent with HasGameRef<PixelGame>, K
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    debugMode = false;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height),
@@ -76,6 +77,12 @@ class Player extends SpriteAnimationGroupComponent with HasGameRef<PixelGame>, K
     hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
     
     return super.onKeyEvent(event, keysPressed);
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if(other is Fruit) other.collidedWithPlayer();
+    super.onCollision(intersectionPoints, other);
   }
 
   
