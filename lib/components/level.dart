@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:mobilegame/components/background_tile.dart';
+import 'package:mobilegame/components/checkpoint.dart';
 import 'package:mobilegame/components/collision_block.dart';
 import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/player.dart';
@@ -87,6 +88,13 @@ class Level extends World with HasGameRef<PixelGame> {
             size: Vector2(spawnPoint.width, spawnPoint.height),
           );
           add(saw);
+          break;
+          case 'Checkpoint' :
+          final checkpoint = Checkpoint(
+            position: Vector2(spawnPoint.x, spawnPoint.y),
+            size: Vector2(spawnPoint.width, spawnPoint.height),
+          );
+          add(checkpoint);
           break;
           default:
         }

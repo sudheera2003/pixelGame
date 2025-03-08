@@ -8,50 +8,50 @@ import 'package:flutter/painting.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/level.dart';
 
-class PixelGame extends FlameGame with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection{
+class PixelGame extends FlameGame
+    with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection {
   @override
   Color backgroundColor() => const Color(0xFF211F30);
-  
-  late final CameraComponent cam;
+
+  late CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showjoystick = false;
+  List<String> levelNames = ['Level-02', 'Level-01'];
+  int currentLevelIndex = 0;
 
-@override
-FutureOr<void> onLoad() async {
-  // Cache image load
-  await images.loadAllImages();
+  @override
+  FutureOr<void> onLoad() async {
+    // Cache image load
+    await images.loadAllImages();
 
-  final world = Level(levelName: 'Level-02', player: player);
+    _loadLevel();
 
-  cam = CameraComponent.withFixedResolution(world: world, width: 640, height: 360);
-  cam.viewfinder.anchor = Anchor.topLeft;
+    if (showjoystick) {
+      addJoystick();
+    }
 
-  addAll([cam, world]);
-
-  if (showjoystick) {
-    addJoystick();
+    return super.onLoad();
   }
-
-  return super.onLoad();
-}
-
 
   @override
   void update(double dt) {
-    if(showjoystick){
+    if (showjoystick) {
       updateJoystick();
     }
     super.update(dt);
   }
-  
+
   void addJoystick() {
     joystick = JoystickComponent(
       knob: SpriteComponent(
-        sprite: Sprite(images.fromCache('HUD/Knob.png'),
+        sprite: Sprite(
+          images.fromCache('HUD/Knob.png'),
         ),
       ),
-      background: SpriteComponent(sprite: Sprite(images.fromCache('HUD/Joystick.png'),
+      background: SpriteComponent(
+        sprite: Sprite(
+          images.fromCache('HUD/Joystick.png'),
         ),
       ),
       margin: EdgeInsets.only(left: 50, bottom: 50),
@@ -59,7 +59,7 @@ FutureOr<void> onLoad() async {
 
     cam.viewport.add(joystick);
   }
-  
+
   void updateJoystick() {
     switch (joystick.direction) {
       case JoystickDirection.left:
@@ -77,5 +77,26 @@ FutureOr<void> onLoad() async {
         break;
     }
   }
-  
+
+  void loadNextLevel() {
+    if (currentLevelIndex < levelNames.length - 1) {
+      currentLevelIndex++;
+      _loadLevel();
+    } else {
+      //iwara unama wena de add karanna
+    }
+  }
+
+  void _loadLevel() {
+    Future.delayed(const Duration(seconds: 1), () {
+      Level world =
+          Level(levelName: levelNames[currentLevelIndex], player: player);
+
+      cam = CameraComponent.withFixedResolution(
+          world: world, width: 640, height: 360);
+      cam.viewfinder.anchor = Anchor.topLeft;
+
+      addAll([cam, world]);
+    });
+  }
 }

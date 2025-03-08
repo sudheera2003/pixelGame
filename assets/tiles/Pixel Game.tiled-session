@@ -13,7 +13,7 @@
                 2
             ],
             "scale": 1.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 320.3333333333333,
                 "y": 184
@@ -24,11 +24,11 @@
                 3,
                 2
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 369.33333333333337,
-                "y": 223.3333333333333
+                "x": 513.3333333333333,
+                "y": 174.33333333333334
             }
         },
         "Pixel Game.tsx": {
