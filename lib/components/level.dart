@@ -6,6 +6,7 @@ import 'package:mobilegame/components/background_tile.dart';
 import 'package:mobilegame/components/collision_block.dart';
 import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/player.dart';
+import 'package:mobilegame/components/saw.dart';
 import 'package:mobilegame/pixel_game.dart';
 
 class Level extends World with HasGameRef<PixelGame> {
@@ -73,6 +74,20 @@ class Level extends World with HasGameRef<PixelGame> {
             size: Vector2(spawnPoint.width, spawnPoint.height),
           );
           add(fruit);
+          break;
+          case 'Saw':
+          final isVertical =  spawnPoint.properties.getValue('isVertical');
+          final offneg =  spawnPoint.properties.getValue('offneg');
+          final offpos =  spawnPoint.properties.getValue('offpos');
+          final saw = Saw(
+            isVertical: isVertical,
+            offpos: offpos,
+            offneg: offneg,
+            position: Vector2(spawnPoint.x, spawnPoint.y),
+            size: Vector2(spawnPoint.width, spawnPoint.height),
+          );
+          add(saw);
+          break;
           default:
         }
       }
