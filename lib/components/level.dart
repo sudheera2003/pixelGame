@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:mobilegame/components/background_tile.dart';
 import 'package:mobilegame/components/checkpoint.dart';
+import 'package:mobilegame/components/chicken.dart';
 import 'package:mobilegame/components/collision_block.dart';
 import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/player.dart';
@@ -40,10 +42,10 @@ class Level extends World with HasGameRef<PixelGame> {
           backgroundLayer.properties.getValue('backgroundColor');
 
       final backgroundTile = BackgroundTile(
-          color: backgroundColor ?? 'Gray',
-          position: Vector2(0, 0),
-        );
-        add(backgroundTile);
+        color: backgroundColor ?? 'Gray',
+        position: Vector2(0, 0),
+      );
+      add(backgroundTile);
     }
   }
 
@@ -59,33 +61,44 @@ class Level extends World with HasGameRef<PixelGame> {
             add(player);
             break;
           case 'Fruit':
-          final fruit = Fruit(
-            fruit: spawnPoint.name,
-            position: Vector2(spawnPoint.x, spawnPoint.y),
-            size: Vector2(spawnPoint.width, spawnPoint.height),
-          );
-          add(fruit);
-          break;
+            final fruit = Fruit(
+              fruit: spawnPoint.name,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(fruit);
+            break;
           case 'Saw':
-          final isVertical =  spawnPoint.properties.getValue('isVertical');
-          final offneg =  spawnPoint.properties.getValue('offneg');
-          final offpos =  spawnPoint.properties.getValue('offpos');
-          final saw = Saw(
-            isVertical: isVertical,
-            offpos: offpos,
-            offneg: offneg,
-            position: Vector2(spawnPoint.x, spawnPoint.y),
-            size: Vector2(spawnPoint.width, spawnPoint.height),
-          );
-          add(saw);
-          break;
-          case 'Checkpoint' :
-          final checkpoint = Checkpoint(
-            position: Vector2(spawnPoint.x, spawnPoint.y),
-            size: Vector2(spawnPoint.width, spawnPoint.height),
-          );
-          add(checkpoint);
-          break;
+            final isVertical = spawnPoint.properties.getValue('isVertical');
+            final offneg = spawnPoint.properties.getValue('offneg');
+            final offpos = spawnPoint.properties.getValue('offpos');
+            final saw = Saw(
+              isVertical: isVertical,
+              offpos: offpos,
+              offneg: offneg,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(saw);
+            break;
+          case 'Checkpoint':
+            final checkpoint = Checkpoint(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(checkpoint);
+            break;
+          case 'Chicken':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final chicken = Chicken(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(chicken);
+            break;
           default:
         }
       }
