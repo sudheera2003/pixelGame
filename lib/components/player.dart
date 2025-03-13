@@ -10,6 +10,7 @@ import 'package:mobilegame/components/collision_block.dart';
 import 'package:mobilegame/components/custom_hitbox.dart';
 import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/saw.dart';
+import 'package:mobilegame/components/spike.dart';
 import 'package:mobilegame/components/utils.dart';
 import 'package:mobilegame/pixel_game.dart';
 
@@ -116,6 +117,7 @@ class Player extends SpriteAnimationGroupComponent
       if (other is Saw) _respawn();
       if (other is Checkpoint) _reachedCheckpoint();
       if (other is Chicken) other.collidedWithPlayer();
+      if (other is Spike) collidedWithEnemy();
     }
     super.onCollisionStart(intersectionPoints, other);
   }
@@ -226,7 +228,7 @@ class Player extends SpriteAnimationGroupComponent
     position.y += velocity.y * dt;
   }
 
-  void _checkVerticalCollisions() {
+void _checkVerticalCollisions() {
     for (final block in collisionBlocks) {
       if (block.isPlatform) {
         if (checkCollision(this, block)) {
@@ -247,7 +249,8 @@ class Player extends SpriteAnimationGroupComponent
           }
           if (velocity.y < 0) {
             velocity.y = 0;
-            position.y = block.y + block.height + height;
+            position.y = block.y + block.height - hitbox.offsetY;
+            break;
           }
         }
       }

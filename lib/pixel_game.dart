@@ -71,6 +71,7 @@ class PixelGame extends FlameGame
     jumpButton = JumpButton();
     cam.viewport.add(jumpButton);
   }
+  
 
   void updateJoystick() {
     if (joystick.parent == null || !joystick.parent!.isMounted) {

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -10,6 +9,7 @@ import 'package:mobilegame/components/collision_block.dart';
 import 'package:mobilegame/components/fruit.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/saw.dart';
+import 'package:mobilegame/components/spike.dart';
 import 'package:mobilegame/pixel_game.dart';
 
 class Level extends World with HasGameRef<PixelGame> {
@@ -99,6 +99,12 @@ class Level extends World with HasGameRef<PixelGame> {
             );
             add(chicken);
             break;
+          case 'Spike':
+          final spike = Spike(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(spike);
           default:
         }
       }

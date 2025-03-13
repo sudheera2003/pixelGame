@@ -21,14 +21,14 @@
         },
         "Level-02.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 295.75,
-                "y": 217.5
+                "x": 195,
+                "y": 199
             }
         },
         "Pixel Game.tsx": {

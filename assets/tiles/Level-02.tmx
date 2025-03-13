@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="28">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="33">
  <tileset firstgid="1" source="Pixel Game.tsx"/>
  <layer id="1" name="Background" width="40" height="23">
   <properties>
@@ -49,6 +49,9 @@
     <property name="offPos" type="float" value="6"/>
    </properties>
   </object>
+  <object id="28" name="Spike" type="Spike" x="176" y="208" width="16" height="16"/>
+  <object id="30" name="Spike" type="Spike" x="160" y="208" width="16" height="16"/>
+  <object id="31" name="Spike" type="Spike" x="144" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
   <object id="3" x="80" y="64" width="16" height="256"/>
