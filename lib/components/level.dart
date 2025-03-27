@@ -42,7 +42,7 @@ class Level extends World with HasGameRef<PixelGame> {
           backgroundLayer.properties.getValue('backgroundColor');
 
       final backgroundTile = BackgroundTile(
-        color: backgroundColor ?? 'Gray',
+        color: backgroundColor ?? 'Purple',
         position: Vector2(0, 0),
       );
       add(backgroundTile);

@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:mobilegame/components/custom_hitbox.dart';
+import 'package:mobilegame/components/floating_score.dart';
 import 'package:mobilegame/pixel_game.dart';
 
 class Fruit extends SpriteAnimationComponent
@@ -46,6 +47,16 @@ class Fruit extends SpriteAnimationComponent
       if (game.playSounds){
         FlameAudio.play('collect_fruit.wav', volume: game.soundVolume);
       }
+
+    int points = 10; // Default points
+    if (fruit == 'Cherries') points = 20;
+    if (fruit == 'Bananas') points = 15;
+    gameRef.score += points;
+    // Add floating score effect
+    // gameRef.add(FloatingScore(
+    //   score: points,
+    //   position: position + size / 2, // Center of the fruit
+    // ));
         
       animation = SpriteAnimation.fromFrameData(
           game.images.fromCache('Items/Fruits/Collected.png'),
