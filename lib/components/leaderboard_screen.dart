@@ -17,7 +17,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the main menu
+            Navigator.pop(context);
           },
         ),
       ),

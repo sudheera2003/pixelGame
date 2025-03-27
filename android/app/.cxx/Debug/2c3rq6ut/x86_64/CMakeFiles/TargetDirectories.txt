@@ -1,0 +1,2 @@
+C:/Users/chamidu/Desktop/ninja game/pixelGame/android/app/.cxx/Debug/2c3rq6ut/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/chamidu/Desktop/ninja game/pixelGame/android/app/.cxx/Debug/2c3rq6ut/x86_64/CMakeFiles/rebuild_cache.dir
