@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:mobilegame/components/jump_button.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/level.dart';
+import 'package:mobilegame/components/score_display.dart';
 
 class PixelGame extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection, TapCallbacks {
@@ -21,8 +22,12 @@ class PixelGame extends FlameGame
   bool showJoystick = false;
   bool playSounds = true;
   double soundVolume = 1.0;
-  List<String> levelNames = ['Level-02'];
+  List<String> levelNames = ['Level-03','Level-04', 'Level-05', 'Level-06', 'Level-07'];
   int currentLevelIndex = 0;
+
+  int score = 0;
+  int highScore = 0;
+  bool persistScoreBetweenLevels = false; 
 
   @override
   FutureOr<void> onLoad() async {
@@ -35,7 +40,8 @@ class PixelGame extends FlameGame
       addJoystick();
       addJumpButton();
     }
-
+    // Add score display to the HUD (always visible)
+    cam.viewport.add(ScoreDisplay());
     return super.onLoad();
   }
 
@@ -109,6 +115,11 @@ class PixelGame extends FlameGame
     if (children.isNotEmpty) {
       removeAll(children);
     }
+    
+    // Reset score if not persisting between levels
+    if (!persistScoreBetweenLevels && currentLevelIndex == 0) {
+      score = 0;
+    }
 
     // Load the new level
     Level world = Level(levelName: levelNames[currentLevelIndex], player: player);
@@ -124,6 +135,16 @@ class PixelGame extends FlameGame
     if (showJoystick) {
       addJoystick();
       addJumpButton();
+    }
+    // Re-add the score display
+      cam.viewport.add(ScoreDisplay());
+    }
+
+    // Add this method to update high score
+  void updateHighScore() {
+    if (score > highScore) {
+      highScore = score;
+      // Here you could save the high score to shared preferences
     }
   }
 }

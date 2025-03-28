@@ -3,11 +3,61 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-02.tmx",
+    "activeFile": "Level-05.tmx",
     "expandedProjectPaths": [
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles",
         "."
     ],
     "fileStates": {
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Idle.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-03.tmx": {
+            "scale": 1.868828125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.9866226328331,
+                "y": 183.8050248735421
+            }
+        },
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-04.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 328,
+                "y": 140.33333333333331
+            }
+        },
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-05.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 11,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 166.0909090909091,
+                "y": 283.04545454545456
+            }
+        },
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Pixel Game.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Spikes.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "Chain.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Level-01.tmx": {
             "expandedObjectLayers": [
                 2
@@ -15,25 +65,65 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 320.3333333333333,
-                "y": 184
+                "x": 320,
+                "y": 183.66666666666663
             }
         },
         "Level-02.tmx": {
             "expandedObjectLayers": [
-                2,
+                3,
+                2
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 320,
+                "y": 184.16666666666669
+            }
+        },
+        "Level-03.tmx": {
+            "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320,
+                "y": 183.66666666666663
+            }
+        },
+        "Level-04.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 195,
-                "y": 199
+                "x": 300,
+                "y": 215.66666666666663
+            }
+        },
+        "Level-05.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 319,
+                "y": 185.75
             }
         },
         "Pixel Game.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "Spikes.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "C:/Users/sudhe/Documents/VSCODE/Projects/mobilegame/assets/images/Terrain",
@@ -43,20 +133,27 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Pixel Game.tsx",
-        "Level-01.tmx",
-        "Level-02.tmx"
+        "Level-04.tmx",
+        "Level-05.tmx"
     ],
     "project": "Pixel Game.tiled-project",
-    "property.type": "float",
+    "property.type": "bool",
     "recentFiles": [
-        "Pixel Game.tsx",
+        "Level-04.tmx",
+        "Level-05.tmx",
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-03.tmx",
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-04.tmx",
+        "C:/Users/MSI/Desktop/pixelGame/assets/tiles/Level-05.tmx",
+        "Level-03.tmx",
+        "Level-02.tmx",
         "Level-01.tmx",
-        "Level-02.tmx"
+        "Chain.tsx",
+        "Pixel Game.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
         "width": 16
-    }
+    },
+    "tileset.type": 1
 }
