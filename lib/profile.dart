@@ -1,3 +1,4 @@
+import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -28,7 +29,6 @@ class _ProfileState extends State<Profile> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Profile background image
                   Image.asset(
                     'assets/images/profile.png',
                     height: 350,
@@ -36,33 +36,23 @@ class _ProfileState extends State<Profile> {
                     fit: BoxFit.contain,
                   ),
                   
-                  // Profile content overlay
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Updated NAME field with display name
                       Column(
                         children: [
                           _buildProfileLabel('NAME'),
                           SizedBox(height: 5),
                           Text(
-                            'chamindu', // Display name goes here
+                            'CJ',
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 20,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 8,
-                                  color: Colors.black,
-                                  offset: Offset(2, 2),
-                                ),
-                              ],
                             ),
                           ),
                         ],
                       ),
-                      
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -73,16 +63,8 @@ class _ProfileState extends State<Profile> {
                               Text(
                                 '105205',
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 8,
-                                      color: Colors.black,
-                                      offset: Offset(2, 2),
-                                    ),
-                                  ],
                                 ),
                               ),
                             ],
@@ -95,16 +77,8 @@ class _ProfileState extends State<Profile> {
                               Text(
                                 '4',
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 8,
-                                      color: Colors.black,
-                                      offset: Offset(2, 2),
-                                    ),
-                                  ],
                                 ),
                               ),
                             ],
@@ -132,6 +106,7 @@ class _ProfileState extends State<Profile> {
                     padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Colors.black, width: 1),
                     ),
                   ),
                   child: Text(
@@ -158,17 +133,11 @@ class _ProfileState extends State<Profile> {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 22,
+          fontSize: 25,
           color: Colors.white,
           fontFamily: 'PixelifySans',
           letterSpacing: 1.0,
-          shadows: [
-            Shadow(
-              blurRadius: 8,
-              color: Colors.black,
-              offset: Offset(2, 2),
-            ),
-          ],
+          fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
       ),

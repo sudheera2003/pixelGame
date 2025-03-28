@@ -58,16 +58,15 @@ class _MyWidgetState extends State<Complete> {
                         style: TextStyle(
                           fontFamily: 'PixelifySans',
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 22,
                         ),
                       ),
                       
                       Text(
                         '1082009',
                         style: TextStyle(
-                          fontFamily: 'PixelifySans',
                           color: Colors.white,
-                          fontSize: 26,
+                          fontSize: 22,
                         ),
                       ),
                       SizedBox(height: 50),
@@ -83,7 +82,7 @@ class _MyWidgetState extends State<Complete> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -93,7 +92,7 @@ class _MyWidgetState extends State<Complete> {
                               style: TextStyle(
                                 fontFamily: 'PixelifySans',
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -102,10 +101,10 @@ class _MyWidgetState extends State<Complete> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.refresh_sharp, size: 20),
+                            icon: Icon(Icons.refresh_sharp, size: 30,color: Colors.white,),
                             style: IconButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
-                              padding: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),
