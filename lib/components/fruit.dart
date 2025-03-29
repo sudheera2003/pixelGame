@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:mobilegame/components/custom_hitbox.dart';
-import 'package:mobilegame/components/floating_score.dart';
 import 'package:mobilegame/pixel_game.dart';
 
 class Fruit extends SpriteAnimationComponent

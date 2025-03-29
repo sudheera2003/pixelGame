@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -23,7 +21,7 @@ class PixelGame extends FlameGame
   bool showJoystick = false;
   bool playSounds = true;
   double soundVolume = 1.0;
-  List<String> levelNames = ['Level-03','Level-04','level-5','level-6','level-7'];
+  List<String> levelNames = ['Level-01','Level-02','level-03','level-04','level-05'];
   int currentLevelIndex = 0;
   String lastCompletedLevel = '';
 

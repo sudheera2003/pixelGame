@@ -1,8 +1,6 @@
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:mobilegame/mainmenu.dart';
-import 'package:mobilegame/pixel_game.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

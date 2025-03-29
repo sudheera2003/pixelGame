@@ -44,24 +44,24 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _showCompletionScreen() {
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-      builder: (context) => Complete(
-        score: game.score,
-        levelName: game.lastCompletedLevel, // Use the getter
-        onNextLevel: () {
-          if (!game.persistScoreBetweenLevels) {
-            game.score = 0;
-          }
-          game.loadLevel();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => GameScreen()),
-          );
-        },
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Complete(
+          score: game.score,
+          levelName: game.lastCompletedLevel,
+          onNextLevel: () {
+            if (!game.persistScoreBetweenLevels) {
+              game.score = 0;
+            }
+            game.loadLevel();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => GameScreen()),
+            );
+          },
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
