@@ -1,4 +1,3 @@
-import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -29,6 +28,7 @@ class _ProfileState extends State<Profile> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
+                  // Profile image container
                   Image.asset(
                     'assets/images/profile.png',
                     height: 350,
@@ -36,13 +36,13 @@ class _ProfileState extends State<Profile> {
                     fit: BoxFit.contain,
                   ),
                   
+                  // Profile information with integrated button
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
                         children: [
                           _buildProfileLabel('NAME'),
-                          SizedBox(height: 5),
                           Text(
                             'CJ',
                             style: TextStyle(
@@ -52,7 +52,6 @@ class _ProfileState extends State<Profile> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -69,7 +68,7 @@ class _ProfileState extends State<Profile> {
                               ),
                             ],
                           ),
-                          SizedBox(width: 60), // Space between SCORE and LEVEL
+                          SizedBox(width: 60),
                           Column(
                             children: [
                               _buildProfileLabel('LEVEL'),
@@ -85,40 +84,11 @@ class _ProfileState extends State<Profile> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 40), // Added space before the button
+                      _buildMainMenuButton(),
                     ],
                   ),
                 ],
-              ),
-            ),
-            
-            // BACK button positioned at the bottom
-            Positioned(
-              bottom: 40,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
-                    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.black, width: 1),
-                    ),
-                  ),
-                  child: Text(
-                    'MAIN MENU',
-                    style: TextStyle(
-                      fontFamily: 'PixelifySans',
-                      fontSize: 20,
-                      color: Colors.white,
-                      letterSpacing: 1.0,
-                    ),
-                  ),
-                ),
               ),
             ),
           ],
@@ -133,13 +103,46 @@ class _ProfileState extends State<Profile> {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 25,
+          fontSize: 20,
           color: Colors.white,
           fontFamily: 'PixelifySans',
           letterSpacing: 1.0,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget _buildMainMenuButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Colors.black, width: 1),
+        ),
+        elevation: 5,
+      ),
+      child: Text(
+        'MAIN MENU',
+        style: TextStyle(
+          fontFamily: 'PixelifySans',
+          fontSize: 20,
+          color: Colors.white,
+          letterSpacing: 1.0,
+          shadows: [
+            Shadow(
+              blurRadius: 2.0,
+              color: Colors.black,
+              offset: Offset(1.0, 1.0),
+            ),
+          ],
+        ),
       ),
     );
   }
