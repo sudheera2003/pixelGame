@@ -7,6 +7,7 @@ import 'package:mobilegame/components/jump_button.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/level.dart';
 import 'package:mobilegame/components/score_display.dart';
+import 'package:mobilegame/retry.dart';
 
 class PixelGame extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection, TapCallbacks {
@@ -42,6 +43,16 @@ class PixelGame extends FlameGame
   @override
   FutureOr<void> onLoad() async {
     await images.loadAllImages();
+    overlays.addEntry('Retry', (context, game) {
+    return Retry(
+        onRetry: () {
+          overlays.remove('Retry');
+          resumeEngine();
+          loadLevel();
+        },
+      );
+    });
+
     await loadLevel();
 
     if (showJoystick) {

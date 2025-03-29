@@ -110,17 +110,17 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (!reachedCheckpoint) {
-      if (other is Fruit) other.collidedWithPlayer();
-      if (other is Saw) _respawn();
-      if (other is Checkpoint) _reachedCheckpoint();
-      if (other is Chicken) other.collidedWithPlayer();
-      if (other is Spike) collidedWithEnemy();
-    }
-    super.onCollisionStart(intersectionPoints, other);
+void onCollisionStart(
+    Set<Vector2> intersectionPoints, PositionComponent other) {
+  if (!reachedCheckpoint) {
+    if (other is Fruit) other.collidedWithPlayer();
+    if (other is Saw) collidedWithEnemy(); // Changed from _respawn() to collidedWithEnemy()
+    if (other is Checkpoint) _reachedCheckpoint();
+    if (other is Chicken) other.collidedWithPlayer();
+    if (other is Spike) collidedWithEnemy();
   }
+  super.onCollisionStart(intersectionPoints, other);
+}
 
   void _loadAllAnimations() {
     idleAnimation = _spriteAnimation('Idle', 11);
@@ -257,27 +257,6 @@ void _checkVerticalCollisions() {
     }
   }
 
-  void _respawn() async {
-    if (game.playSounds) FlameAudio.play('hit.wav', volume: game.soundVolume);
-    const canMoveDuration = Duration(milliseconds: 400);
-    gotHit = true;
-    current = PlayerState.hit;
-
-    await animationTicker?.completed;
-    animationTicker?.reset();
-    scale.x = 1;
-    position = startingPosition - Vector2.all(96 - 64);
-    current = PlayerState.appearing;
-
-    await animationTicker?.completed;
-    animationTicker?.reset();
-
-    velocity = Vector2.zero();
-    position = startingPosition;
-    _updatePlayerState();
-    Future.delayed(canMoveDuration, () => gotHit = false);
-  }
-
   void _reachedCheckpoint() async{
     reachedCheckpoint = true;
     if (game.playSounds){
@@ -298,7 +277,8 @@ void _checkVerticalCollisions() {
       const waitToChangeDuration = Duration(seconds: 3);
       Future.delayed(waitToChangeDuration, () => game.loadNextLevel());
   }
-  void collidedWithEnemy(){
-    _respawn();
-  }
+  void collidedWithEnemy() {
+  gameRef.pauseEngine();
+  gameRef.overlays.add('Retry');
+}
 }
