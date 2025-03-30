@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mobilegame/game_screen.dart';
 import 'package:mobilegame/mainmenu.dart';
 
 class Complete extends StatefulWidget {
-  const Complete({super.key});
+  final int score;
+  final String levelName;
+  final VoidCallback onNextLevel;
+
+  const Complete({
+    super.key,
+    required this.score,
+    required this.levelName,
+    required this.onNextLevel,
+  });
 
   @override
-  State<Complete> createState() => _MyWidgetState();
+  State<Complete> createState() => _CompleteState();
 }
 
-class _MyWidgetState extends State<Complete> {
+class _CompleteState extends State<Complete> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +38,6 @@ class _MyWidgetState extends State<Complete> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Match the same size as Subtract.png (400x400)
                   Image.asset(
                     'assets/images/complete.png',
                     height: 350,
@@ -39,13 +45,12 @@ class _MyWidgetState extends State<Complete> {
                     fit: BoxFit.contain,
                   ),
                   
-                  // Content overlay
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: 30),
                       Text(
-                        'LEVEL 01',
+                        widget.levelName.toUpperCase(),
                         style: TextStyle(
                           fontFamily: 'PixelifySans',
                           color: Colors.white,
@@ -63,7 +68,7 @@ class _MyWidgetState extends State<Complete> {
                       ),
                       
                       Text(
-                        '1082009',
+                        widget.score.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -99,9 +104,9 @@ class _MyWidgetState extends State<Complete> {
                           SizedBox(width: 10),
                           IconButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              widget.onNextLevel();
                             },
-                            icon: Icon(Icons.refresh_sharp, size: 30,color: Colors.white,),
+                            icon: Icon(Icons.refresh_sharp, size: 30, color: Colors.white),
                             style: IconButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
                               padding: EdgeInsets.all(0),

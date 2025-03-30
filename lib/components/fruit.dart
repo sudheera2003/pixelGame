@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/collisions.dart';
@@ -11,13 +10,12 @@ import 'package:mobilegame/pixel_game.dart';
 class Fruit extends SpriteAnimationComponent
     with HasGameRef<PixelGame>, CollisionCallbacks {
   final String fruit;
-  Fruit({this.fruit = 'Apple', position, size})
-      : super(position: position, size: size);
+  Fruit({this.fruit = 'Apple', super.position, super.size});
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final double stepTime = 0.05;
-  final hitbox = CustomHitbox(
+  final CustomHitbox hitbox = CustomHitbox(
     offsetX: 10,
     offsetY: 10,
     width: 12,
@@ -49,7 +47,8 @@ class Fruit extends SpriteAnimationComponent
         amount: 17, 
         stepTime: stepTime, 
         textureSize: Vector2.all(32),
-    ));
+      ),
+    );
     
     return super.onLoad();
   }
@@ -76,7 +75,8 @@ class Fruit extends SpriteAnimationComponent
       });
 
       // Check and update high score if needed
-      final currentHigh = (await userRef.get()).data()?['highScore'] ?? 0;
+      final docSnapshot = await userRef.get();
+      final currentHigh = docSnapshot.data()?['highScore'] ?? 0;
       
       if (newScore > currentHigh) {
         batch.update(userRef, {
@@ -109,7 +109,7 @@ class Fruit extends SpriteAnimationComponent
     gameRef.score += _points;
     
     // Update scores in Firestore (don't await to avoid frame drops)
-    _updateScores(gameRef.score);
+    unawaited(_updateScores(gameRef.score));
 
     // Change to collected animation
     animation = SpriteAnimation.fromFrameData(
