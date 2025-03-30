@@ -69,11 +69,12 @@ class Fruit extends SpriteAnimationComponent
       final userRef = _firestore.collection('users').doc(user.uid);
       final batch = _firestore.batch();
       
-      // Always update current score
+      // Always update current score and exp
       batch.update(userRef, {
         'currentScore': newScore,
+        'exp': FieldValue.increment(newScore),
       });
-
+      
       // Check and update high score if needed
       final docSnapshot = await userRef.get();
       final currentHigh = docSnapshot.data()?['highScore'] ?? 0;

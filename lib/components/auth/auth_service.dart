@@ -39,7 +39,7 @@ Future<void> handleGoogleSignIn() async {
           'email': user.email ?? '',
           'highScore': 0,
           'currentScore': 0,
-          'level': 1,
+          'exp': 0,
         }, SetOptions(merge: true)); 
         print("New user created in Firestore");
       } else {

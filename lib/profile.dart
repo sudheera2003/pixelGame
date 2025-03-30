@@ -133,7 +133,7 @@ class _ProfileState extends State<Profile> {
                                 _buildProfileLabel('LEVEL'),
                                 const SizedBox(height: 5),
                                 Text(
-                                  _userData?['level']?.toString() ?? '1',
+                                  _userData?['exp']?.toString() ?? '0',
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
