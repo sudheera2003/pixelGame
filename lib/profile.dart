@@ -76,20 +76,41 @@ class _ProfileState extends State<Profile> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
+                        // Name and High Score in same row
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildProfileLabel('NAME'),
-                            const SizedBox(height: 5),
-                            Text(
-                              _userData?['displayName']?.toString() ?? 'Guest',
-                              style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
+                            Column(
+                              children: [
+                                _buildProfileLabel('NAME'),
+                                const SizedBox(height: 5),
+                                Text(
+                                  _userData?['displayName']?.toString() ?? 'Guest',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 40), // Adjust spacing as needed
+                            Column(
+                              children: [
+                                _buildProfileLabel('H-SCORE'),
+                                const SizedBox(height: 5),
+                                Text(
+                                  _userData?['highScore']?.toString() ?? '0',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
+                        // Score and Level in same row (keeping your existing layout)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -174,39 +195,6 @@ class _ProfileState extends State<Profile> {
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget _buildMainMenuButton() {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: Colors.black, width: 1),
-        ),
-        elevation: 5,
-      ),
-      child: Text(
-        'MAIN MENU',
-        style: TextStyle(
-          fontFamily: 'PixelifySans',
-          fontSize: 20,
-          color: Colors.white,
-          letterSpacing: 1.0,
-          shadows: [
-            Shadow(
-              blurRadius: 2.0,
-              color: Colors.black,
-              offset: Offset(1.0, 1.0),
-            ),
-          ],
-        ),
       ),
     );
   }
