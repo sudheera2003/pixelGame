@@ -106,7 +106,7 @@ class _CompleteState extends State<Complete> {
                             onPressed: () {
                               widget.onNextLevel();
                             },
-                            icon: Icon(Icons.refresh_sharp, size: 30, color: Colors.white),
+                            icon: Icon(Icons.forward, size: 30, color: Colors.white),
                             style: IconButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
                               padding: EdgeInsets.all(0),

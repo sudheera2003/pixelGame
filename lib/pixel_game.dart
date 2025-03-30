@@ -7,6 +7,8 @@ import 'package:mobilegame/components/jump_button.dart';
 import 'package:mobilegame/components/player.dart';
 import 'package:mobilegame/components/level.dart';
 import 'package:mobilegame/components/score_display.dart';
+import 'package:mobilegame/complete.dart';
+import 'package:flutter/material.dart';
 
 class PixelGame extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection, TapCallbacks {
@@ -140,6 +142,22 @@ class PixelGame extends FlameGame
       addJumpButton();
     }
     cam.viewport.add(ScoreDisplay());
+  }
+
+  void showLevelCompleteScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Complete(
+          score: score,
+          levelName: currentLevelName,
+          onNextLevel: () {
+            Navigator.pop(context);
+            loadNextLevel();
+          },
+        ),
+      ),
+    );
   }
 
   void updateHighScore() {
