@@ -1,0 +1,52 @@
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+Future<void> handleGoogleSignIn() async {
+  try {
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) return; // User canceled sign-in
+    
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Sign in to Firebase with Google credentials
+    final UserCredential userCredential = 
+        await _firebaseAuth.signInWithCredential(credential);
+    
+    // Get the Firebase User
+    final User? user = userCredential.user;
+    
+    if (user != null) {
+      print("Google Sign-In Success: ${user.displayName}");
+      
+      // Check if user exists in Firestore
+      final userDoc = await _firestore.collection('users').doc(user.uid).get();
+      
+      if (!userDoc.exists) {
+        // First-time sign-in - initialize all data
+        await _firestore.collection('users').doc(user.uid).set({
+          'userId': user.uid,
+          'displayName': user.displayName ?? 'Player',
+          'email': user.email ?? '',
+          'highScore': 0,
+          'currentScore': 0,
+          'level': 1,
+        }, SetOptions(merge: true)); 
+        print("New user created in Firestore");
+      } else {
+        print("Existing user signed in");
+      }
+    }
+  } catch (error) {
+    print("Google Sign-In Error: $error");
+  }
+}

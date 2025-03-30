@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:mobilegame/mainmenu.dart';
@@ -8,7 +10,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();
   await Flame.device.setLandscape();
-
+  if(kIsWeb){
+    await Firebase.initializeApp(options: const FirebaseOptions(
+      apiKey: "AIzaSyBokRBryWxjl9Wtk-paWGmNNS8Mvxb3TuQ",
+      authDomain: "pixel-game-users.firebaseapp.com",
+      projectId: "pixel-game-users",
+      storageBucket: "pixel-game-users.firebasestorage.app",
+      messagingSenderId: "815729186372",
+      appId: "1:815729186372:web:6bb36e289a0946c1ce8e11"));
+    }else{
+      await Firebase.initializeApp();
+    }
   runApp(const MainApp());
 }
 

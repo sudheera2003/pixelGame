@@ -19,10 +19,10 @@ class PixelGame extends FlameGame
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   late JumpButton jumpButton;
-  bool showJoystick = false;
+  bool showJoystick = true;
   bool playSounds = true;
   double soundVolume = 1.0;
-  List<String> levelNames = ['Level-03','Level-04', 'Level-05', 'Level-06', 'Level-07'];
+  List<String> levelNames = ['Level-04', 'Level-05', 'Level-06', 'Level-07'];
   int currentLevelIndex = 0;
 
   int score = 0;

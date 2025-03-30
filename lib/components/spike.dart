@@ -19,7 +19,7 @@ class Spike extends SpriteComponent with HasGameRef<PixelGame>, CollisionCallbac
 
     add(spikeHitbox);
 
-    final spriteSheet = await game.images.load('Traps/Spikes/idle.png');
+    final spriteSheet = await game.images.load('Traps/Spikes/Idle.png');
     sprite = Sprite(spriteSheet);
 
     return super.onLoad();
