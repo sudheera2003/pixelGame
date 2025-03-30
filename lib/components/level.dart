@@ -137,4 +137,5 @@ class Level extends World with HasGameRef<PixelGame> {
     }
     player.collisionBlocks = collisionBlocks;
   }
-}
+  
+  }
