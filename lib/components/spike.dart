@@ -33,4 +33,5 @@ class Spike extends SpriteComponent with HasGameRef<PixelGame>, CollisionCallbac
       other.collidedWithEnemy();
     }
   }
+  
 }
