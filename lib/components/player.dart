@@ -256,6 +256,11 @@ void _checkVerticalCollisions() {
       }
     }
   }
+    // In Player class
+  void updateStartingPosition(Vector2 newPosition) {
+    startingPosition = newPosition;
+    position = newPosition;
+  }
 
   void _respawn() async {
     if (game.playSounds) FlameAudio.play('hit.wav', volume: game.soundVolume);
