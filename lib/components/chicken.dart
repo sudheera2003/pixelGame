@@ -144,4 +144,5 @@ class Chicken extends SpriteAnimationGroupComponent
       player.collidedWithEnemy();
     }
   }
+  
 }
