@@ -44,6 +44,22 @@ class _ProfileState extends State<Profile> {
     }
   }
 
+  int calculateLevel(int? exp) {
+    exp ??= 0;
+    
+    if (exp < 0) return 0; 
+    if (exp < 300) return 1;
+    if (exp < 500) return 2;
+    if (exp < 800) return 3;
+    if (exp < 1000) return 4;
+    if (exp < 1200) return 5;
+    if (exp < 1400) return 6;
+    if (exp < 1500) return 7;
+    if (exp < 1700) return 8;
+    if (exp < 2000) return 9;
+    return 10;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +109,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 40), // Adjust spacing as needed
+                            const SizedBox(width: 40),
                             Column(
                               children: [
                                 _buildProfileLabel('H-SCORE'),
@@ -110,7 +126,7 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        // Score and Level in same row (keeping your existing layout)
+                        // Score and Level in same row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -119,7 +135,7 @@ class _ProfileState extends State<Profile> {
                                 _buildProfileLabel('SCORE'),
                                 const SizedBox(height: 5),
                                 Text(
-                                  _userData?['currentScore']?.toString() ?? '0',
+                                  _userData?['exp']?.toString() ?? '0',
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -133,7 +149,7 @@ class _ProfileState extends State<Profile> {
                                 _buildProfileLabel('LEVEL'),
                                 const SizedBox(height: 5),
                                 Text(
-                                  _userData?['exp']?.toString() ?? '0',
+                                  calculateLevel(_userData?['exp']).toString(),
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -148,7 +164,6 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            
             
             Positioned(
               bottom: 40,
@@ -201,10 +216,10 @@ class _ProfileState extends State<Profile> {
   }
 
   String getFirstName(String? displayName) {
-  if (displayName == null || displayName.isEmpty) return 'Guest';
-  
-  // Split by whitespace and take first part
-  final parts = displayName.trim().split(' ');
-  return parts.first;
-}
+    if (displayName == null || displayName.isEmpty) return 'Guest';
+    
+    // Split by whitespace and take first part
+    final parts = displayName.trim().split(' ');
+    return parts.first;
+  }
 }
