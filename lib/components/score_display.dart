@@ -36,4 +36,5 @@ class ScoreDisplay extends Component with HasGameRef<PixelGame> {
     scoreText.text = 'Score: ${gameRef.score}';
     super.update(dt);
   }
+  
 }
