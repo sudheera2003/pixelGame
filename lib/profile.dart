@@ -85,7 +85,7 @@ class _ProfileState extends State<Profile> {
                                 _buildProfileLabel('NAME'),
                                 const SizedBox(height: 5),
                                 Text(
-                                  _userData?['displayName']?.toString() ?? 'Guest',
+                                  getFirstName(_userData?['displayName']?.toString()),
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -109,7 +109,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 12),
                         // Score and Level in same row (keeping your existing layout)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -198,4 +198,12 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+
+  String getFirstName(String? displayName) {
+  if (displayName == null || displayName.isEmpty) return 'Guest';
+  
+  // Split by whitespace and take first part
+  final parts = displayName.trim().split(' ');
+  return parts.first;
+}
 }

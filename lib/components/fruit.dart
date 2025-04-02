@@ -72,7 +72,6 @@ class Fruit extends SpriteAnimationComponent
       // Always update current score and exp
       batch.update(userRef, {
         'currentScore': newScore,
-        'exp': FieldValue.increment(newScore),
       });
       
       // Check and update high score if needed
