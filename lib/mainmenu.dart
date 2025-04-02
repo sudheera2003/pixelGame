@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobilegame/complete.dart';
+import 'package:mobilegame/components/auth/auth_service.dart';
 import 'package:mobilegame/game_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobilegame/profile.dart';
 
 class MainMenu extends StatelessWidget {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  Future<void> _handleGoogleSignIn() async {
-    try {
-      final GoogleSignInAccount? user = await _googleSignIn.signIn();
-      if (user != null) {
-        print("Google Sign-In Success: ${user.displayName}");
-      }
-    } catch (error) {
-      print("Google Sign-In Error: $error");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +22,7 @@ class MainMenu extends StatelessWidget {
             Container(
               color: Colors.black.withOpacity(0.4),
             ),
+            
             
             Center(
               child: Stack(
@@ -85,7 +75,7 @@ class MainMenu extends StatelessWidget {
               bottom: 20,
               right: 20,
               child: FloatingActionButton(
-                onPressed: _handleGoogleSignIn,
+                onPressed: handleGoogleSignIn,
                 backgroundColor: Colors.white,
                 child: Image.asset(
                   'assets/images/google.png',
@@ -182,3 +172,4 @@ class MainMenu extends StatelessWidget {
     );
   }
 }
+

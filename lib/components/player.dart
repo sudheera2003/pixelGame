@@ -278,9 +278,9 @@ void _checkVerticalCollisions() {
     Future.delayed(canMoveDuration, () => gotHit = false);
   }
 
-  void _reachedCheckpoint() async{
+  void _reachedCheckpoint() async {
     reachedCheckpoint = true;
-    if (game.playSounds){
+    if (game.playSounds) {
         FlameAudio.play('dissapear.wav', volume: game.soundVolume);
     }
     if (scale.x > 0) {
@@ -293,11 +293,13 @@ void _checkVerticalCollisions() {
     await animationTicker?.completed;
     animationTicker?.reset();
     reachedCheckpoint = false;
-      position = Vector2.all(-640);
+    position = Vector2.all(-640);
 
-      const waitToChangeDuration = Duration(seconds: 3);
-      Future.delayed(waitToChangeDuration, () => game.loadNextLevel());
-  }
+    // Instead of directly loading next level, show complete screen
+    if (game is PixelGame) {
+      (game as PixelGame).showLevelCompleteScreen(game.buildContext!);
+    }
+}
   void collidedWithEnemy(){
     _respawn();
   }
