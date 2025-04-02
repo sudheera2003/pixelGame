@@ -36,4 +36,5 @@ class JumpButton extends SpriteComponent with HasGameRef<PixelGame>, TapCallback
     game.player.hasJumped = false;
     super.onTapUp(event);
   }
+  
 }
