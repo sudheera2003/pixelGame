@@ -25,4 +25,5 @@ class BackgroundTile extends ParallaxComponent<PixelGame> with HasGameRef<PixelG
     );
     return super.onLoad();
   }
+  
 }
