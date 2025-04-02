@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilegame/mainmenu.dart';
 
@@ -18,6 +20,8 @@ class Complete extends StatefulWidget {
 }
 
 class _CompleteState extends State<Complete> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,13 +70,17 @@ class _CompleteState extends State<Complete> {
                           fontSize: 22,
                         ),
                       ),
-                      
-                      Text(
-                        widget.score.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
+                      FutureBuilder(
+                        future: _updateExp(widget.score),
+                        builder: (context, snapshot) {
+                          return Text(
+                            widget.score.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(height: 50),
                       Row(
@@ -87,7 +95,7 @@ class _CompleteState extends State<Complete> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -128,4 +136,24 @@ class _CompleteState extends State<Complete> {
       ),
     );
   }
+  Future<void> _updateExp(int newScore) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return;
+
+      final userRef = _firestore.collection('users').doc(user.uid);
+      final batch = _firestore.batch();
+      
+      // Always update current exp
+      batch.update(userRef, {
+        'exp': FieldValue.increment(newScore),
+      });
+      
+      await batch.commit();
+    } catch (e) {
+      print('Error updating scores: $e');
+      // Consider adding error handling/retry logic here
+    }
+  }
+
 }

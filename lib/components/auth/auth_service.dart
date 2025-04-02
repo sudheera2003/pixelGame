@@ -8,6 +8,10 @@ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 Future<void> handleGoogleSignIn() async {
   try {
+    // Force account selection by signing out first
+    await _googleSignIn.signOut();
+    
+    // Then sign in with account selector
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) return; // User canceled sign-in
     
@@ -40,9 +44,14 @@ Future<void> handleGoogleSignIn() async {
           'highScore': 0,
           'currentScore': 0,
           'exp': 0,
+          'createdAt': FieldValue.serverTimestamp(),
         }, SetOptions(merge: true)); 
         print("New user created in Firestore");
       } else {
+        // Update last login time for existing users
+        await _firestore.collection('users').doc(user.uid).update({
+          'lastLogin': FieldValue.serverTimestamp(),
+        });
         print("Existing user signed in");
       }
     }

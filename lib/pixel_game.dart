@@ -23,7 +23,7 @@ class PixelGame extends FlameGame
   bool showJoystick = true;
   bool playSounds = true;
   double soundVolume = 1.0;
-  
+
   List<String> levelNames = ['Level-01', 'Level-02', 'Level-03', 'Level-04', 'Level-05'];
   int currentLevelIndex = 0;
   String lastCompletedLevel = '';
@@ -130,6 +130,10 @@ class PixelGame extends FlameGame
     }
 
     Level world = Level(levelName: levelNames[currentLevelIndex], player: player);
+
+    player.gotHit = false;
+    player.reachedCheckpoint = false;
+    player.velocity = Vector2.zero();
 
     cam = CameraComponent.withFixedResolution(
         world: world, width: 640, height: 360);

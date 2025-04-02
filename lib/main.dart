@@ -129,6 +129,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+
   double _loadingProgress = 0.0;
 
   @override
