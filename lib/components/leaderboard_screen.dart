@@ -29,4 +29,5 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       ),
     );
   }
+  
 }
