@@ -23,9 +23,8 @@ class PixelGame extends FlameGame
   bool showJoystick = true;
   bool playSounds = true;
   double soundVolume = 1.0;
-  
-  List<String> levelNames = ['Level-05'];
-  // List<String> levelNames = ['Level-01', 'Level-02', 'Level-03', 'Level-04', 'Level-05'];
+
+  List<String> levelNames = ['Level-01', 'Level-02', 'Level-03', 'Level-04', 'Level-05'];
   int currentLevelIndex = 0;
   String lastCompletedLevel = '';
 
