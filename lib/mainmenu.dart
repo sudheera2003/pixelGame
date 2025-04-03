@@ -23,7 +23,6 @@ class MainMenu extends StatelessWidget {
               color: Colors.black.withOpacity(0.4),
             ),
             
-            
             Center(
               child: Stack(
                 alignment: Alignment.center,

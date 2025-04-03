@@ -58,6 +58,7 @@ class _ProfileState extends State<Profile> {
     if (exp < 1700) return 8;
     if (exp < 2000) return 9;
     return 10;
+    
   }
 
   @override

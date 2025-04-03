@@ -74,6 +74,7 @@ class Fruit extends SpriteAnimationComponent
         'currentScore': newScore,
       });
       
+      
       // Check and update high score if needed
       final docSnapshot = await userRef.get();
       final currentHigh = docSnapshot.data()?['highScore'] ?? 0;

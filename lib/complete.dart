@@ -92,6 +92,7 @@ class _CompleteState extends State<Complete> {
                                 context,
                                 MaterialPageRoute(builder: (context) => MainMenu()),
                               );
+                              
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 166, 58, 170).withOpacity(0.7),

@@ -54,6 +54,7 @@ Future<void> handleGoogleSignIn() async {
         });
         print("Existing user signed in");
       }
+      
     }
   } catch (error) {
     print("Google Sign-In Error: $error");
