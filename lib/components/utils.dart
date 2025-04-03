@@ -21,4 +21,5 @@ bool checkCollision(player, block){
     fixedX < blockX + blockWidth &&
     fixedX + playerWidth > blockX
   );
+  
 }
