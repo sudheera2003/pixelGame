@@ -65,4 +65,3 @@ class Saw extends SpriteAnimationComponent with HasGameRef<PixelGame>{
   }
   
 }
-
